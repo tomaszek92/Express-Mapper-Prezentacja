@@ -51,12 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUnitOfTestSetCreatable.cs" />
+    <Compile Include="MapperType.cs" />
+    <Compile Include="Models\IHandWrittenMapperable.cs" />
+    <Compile Include="Models\IRandomCreateable.cs" />
+    <Compile Include="Models\Test1\Gender.cs" />
+    <Compile Include="Models\Test1\PersonEf.cs" />
+    <Compile Include="Models\Test1\PersonViewModel.cs" />
+    <Compile Include="Tester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Test2\" />
+    <Folder Include="Models\Test3\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
