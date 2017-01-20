@@ -12,7 +12,7 @@ namespace ExpressMapperTutorial
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private TSource[] _toMap;
 
-        public void CompareMappers(int numerOfMappings)
+        public void CompareMappers(long numerOfMappings)
         {
             Console.WriteLine($"Test for {numerOfMappings} mappings");
 
@@ -29,13 +29,12 @@ namespace ExpressMapperTutorial
             Console.WriteLine();
         }
 
-        private void DoSingeTest(int numerOfMappings, MapperType mapperType, Func<TSource, TDest> action)
+        private void DoSingeTest(long numerOfMappings, MapperType mapperType, Func<TSource, TDest> map)
         {
             _stopwatch.Restart();
-            for (int i = 0; i < numerOfMappings; i++)
+            for (long i = 0; i < numerOfMappings; i++)
             {
-                var tmp = _toMap[i];
-                action(tmp);
+                map(_toMap[i]);
             }
             _stopwatch.Stop();
             Console.WriteLine($"{GetMapperType(mapperType)}: {_stopwatch.Elapsed.TotalMilliseconds}");

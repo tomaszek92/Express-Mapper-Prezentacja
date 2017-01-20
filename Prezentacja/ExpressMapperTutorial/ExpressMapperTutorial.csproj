@@ -58,6 +58,14 @@
     <Compile Include="Models\Test1\Gender.cs" />
     <Compile Include="Models\Test1\PersonEf.cs" />
     <Compile Include="Models\Test1\PersonViewModel.cs" />
+    <Compile Include="Models\Test2\DestA.cs" />
+    <Compile Include="Models\Test2\DestB.cs" />
+    <Compile Include="Models\Test2\DestC.cs" />
+    <Compile Include="Models\Test2\DestTest.cs" />
+    <Compile Include="Models\Test2\SourceA.cs" />
+    <Compile Include="Models\Test2\SourceB.cs" />
+    <Compile Include="Models\Test2\SourceC.cs" />
+    <Compile Include="Models\Test2\SourceTest.cs" />
     <Compile Include="Tester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,7 +75,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Test2\" />
     <Folder Include="Models\Test3\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
