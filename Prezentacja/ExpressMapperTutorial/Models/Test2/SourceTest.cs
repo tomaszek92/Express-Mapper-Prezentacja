@@ -5,13 +5,13 @@ namespace ExpressMapperTutorial.Models.Test2
 {
     public class SourceTest : IRandomCreateable, IHandWrittenMapperable<DestTest>
     {
-        public Dictionary<int, List<SourceA>> Dictionary { get; set; }
+        public List<List<SourceA>> Lists { get; set; }
 
         public void FillWithRandomValues()
         {
             Random rand = new Random();
-            Dictionary = new Dictionary<int, List<SourceA>>();
-            for (int i = 0; i < 10; i++)
+            Lists = new List<List<SourceA>>();
+            for (int i = 0; i < 5; i++)
 
             {
                 var sourceAs = new List<SourceA>();
@@ -33,7 +33,7 @@ namespace ExpressMapperTutorial.Models.Test2
                         Long = rand.Next()
                     });
                 }
-                Dictionary.Add(i, sourceAs);
+                Lists.Add(sourceAs);
             }
         }
 
@@ -41,12 +41,12 @@ namespace ExpressMapperTutorial.Models.Test2
         {
             DestTest dest = new DestTest
             {
-                Dictionary = new Dictionary<int, List<DestA>>()
+                Lists = new List<List<DestA>>()
             };
-            foreach (var pair in this.Dictionary)
+            foreach (var list in Lists)
             {
                 var destAs = new List<DestA>();
-                foreach (SourceA sourceA in pair.Value)
+                foreach (SourceA sourceA in list)
                 {
                     DestB[] destBs = new DestB[sourceA.Bs.Length];
                     for (int i = 0; i < sourceA.Bs.Length; i++)
@@ -64,7 +64,7 @@ namespace ExpressMapperTutorial.Models.Test2
                         C = new DestC {Float = sourceA.C.Float}
                     };
                 }
-                dest.Dictionary.Add(pair.Key, destAs);
+                dest.Lists.Add(destAs);
             }
 
             return dest;

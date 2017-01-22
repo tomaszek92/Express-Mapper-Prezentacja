@@ -66,6 +66,12 @@
     <Compile Include="Models\Test2\SourceB.cs" />
     <Compile Include="Models\Test2\SourceC.cs" />
     <Compile Include="Models\Test2\SourceTest.cs" />
+    <Compile Include="Models\Test3\DestCar.cs" />
+    <Compile Include="Models\Test3\DestCarCategory.cs" />
+    <Compile Include="Models\Test3\DestCarItem.cs" />
+    <Compile Include="Models\Test3\SourceCar.cs" />
+    <Compile Include="Models\Test3\SourceCarCategory.cs" />
+    <Compile Include="Models\Test3\SourceCarItem.cs" />
     <Compile Include="Tester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,9 +80,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Test3\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

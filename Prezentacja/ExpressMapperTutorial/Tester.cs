@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
+using AutoMapper;
 using ExpressMapper.Extensions;
 using ExpressMapperTutorial.Models;
 
@@ -9,10 +12,16 @@ namespace ExpressMapperTutorial
         where TSource : IRandomCreateable, IHandWrittenMapperable<TDest>, new()
         where TDest : new()
     {
+        private readonly IMapper _autoMaper;
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private TSource[] _toMap;
 
-        public void CompareMappers(long numerOfMappings)
+        public Tester(IMapper autoMaper)
+        {
+            _autoMaper = autoMaper;
+        }
+
+        public IDictionary<MapperType, List<TDest>> CompareMappers(long numerOfMappings)
         {
             Console.WriteLine($"Test for {numerOfMappings} mappings");
 
@@ -23,21 +32,29 @@ namespace ExpressMapperTutorial
                 _toMap[i].FillWithRandomValues();
             }
 
-            DoSingeTest(numerOfMappings, MapperType.ExpressMapper, x => x.Map<TSource, TDest>());
-            DoSingeTest(numerOfMappings, MapperType.AutoMapper, x => AutoMapper.Mapper.Map<TDest>(x));
-            DoSingeTest(numerOfMappings, MapperType.HandWritten, x => x.Map());
+            IDictionary<MapperType, List<TDest>> results = new Dictionary<MapperType, List<TDest>>();
+            results.Add(DoSingeTest(numerOfMappings, MapperType.ExpressMapper, x => x.Map<TSource, TDest>()));
+            results.Add(DoSingeTest(numerOfMappings, MapperType.AutoMapper, x => _autoMaper.Map<TDest>(x)));
+            results.Add(DoSingeTest(numerOfMappings, MapperType.HandWritten, x => x.Map()));
+
             Console.WriteLine();
+            return results;
         }
 
-        private void DoSingeTest(long numerOfMappings, MapperType mapperType, Func<TSource, TDest> map)
+        private KeyValuePair<MapperType, List<TDest>> DoSingeTest(long numerOfMappings, MapperType mapperType,
+            Func<TSource, TDest> map)
         {
+            List<TDest> result = new List<TDest>();
+
             _stopwatch.Restart();
             for (long i = 0; i < numerOfMappings; i++)
             {
-                map(_toMap[i]);
+                result.Add(map(_toMap[i]));
             }
             _stopwatch.Stop();
             Console.WriteLine($"{GetMapperType(mapperType)}: {_stopwatch.Elapsed.TotalMilliseconds}");
+
+            return new KeyValuePair<MapperType, List<TDest>>(mapperType, result);
         }
 
         private static string GetMapperType(MapperType mapperType)

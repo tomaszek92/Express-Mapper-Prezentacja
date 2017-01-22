@@ -1,6 +1,6 @@
 ﻿namespace ExpressMapperTutorial.Models.Test2
 {
-    public struct SourceC
+    public class SourceC
     {
         public float Float { get; set; }
     }
