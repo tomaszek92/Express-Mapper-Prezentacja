@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ExpressMapperTutorial.ExpressionTrees;
 using ExpressMapperTutorial.Models.Test1;
 using ExpressMapperTutorial.Models.Test2;
 using ExpressMapperTutorial.Models.Test3;
@@ -9,6 +10,23 @@ namespace ExpressMapperTutorial
     class Program
     {
         static void Main(string[] args)
+        {
+            Example1.Show();
+            Console.WriteLine();
+            Example2.Show();
+            Console.WriteLine();
+            Example3.Show();
+            Console.WriteLine();
+            Example4.Show();
+            Console.WriteLine();
+            Example5.Show();
+            Console.WriteLine();
+
+            //TestMappers();
+            Console.ReadLine();
+        }
+
+        private static void TestMappers()
         {
             // initialize ExpressMapper
             // test 1
@@ -111,7 +129,6 @@ namespace ExpressMapperTutorial
             {
                 throw new Exception();
             }
-            Console.ReadLine();
         }
     }
 }

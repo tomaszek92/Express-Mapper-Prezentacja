@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionTrees\Example1.cs" />
+    <Compile Include="ExpressionTrees\Example2.cs" />
+    <Compile Include="ExpressionTrees\Example3.cs" />
+    <Compile Include="ExpressionTrees\Example4.cs" />
+    <Compile Include="ExpressionTrees\Example5.cs" />
     <Compile Include="IUnitOfTestSetCreatable.cs" />
     <Compile Include="MapperType.cs" />
     <Compile Include="Models\IHandWrittenMapperable.cs" />
