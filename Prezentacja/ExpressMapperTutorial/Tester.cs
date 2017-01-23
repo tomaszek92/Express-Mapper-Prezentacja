@@ -52,7 +52,7 @@ namespace ExpressMapperTutorial
                 result.Add(map(_toMap[i]));
             }
             _stopwatch.Stop();
-            Console.WriteLine($"{GetMapperType(mapperType)}: {_stopwatch.Elapsed.TotalMilliseconds}");
+            Console.WriteLine($"{GetMapperType(mapperType)}: {_stopwatch.Elapsed.TotalMilliseconds:F} ms");
 
             return new KeyValuePair<MapperType, List<TDest>>(mapperType, result);
         }

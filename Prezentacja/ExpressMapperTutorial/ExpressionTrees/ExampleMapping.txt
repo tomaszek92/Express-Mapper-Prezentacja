@@ -1,0 +1,83 @@
+﻿.Lambda #Lambda1<System.Func`2[Product,ProductViewModel]>(Product $src)
+{
+    .Block(ProductViewModel $dest) {
+        $dest = .New ProductViewModel();
+        $dest.FinalPrice = $src.Price - $src.Discount;
+        .If ($src.Brand == .Default(Brand)) {
+            $dest.BrandName = .Default(System.String)
+        } .Else {
+            $dest.BrandName = ($src.Brand).Name
+        };
+        $dest.Id = $src.Id;
+        $dest.Name = $src.Name;
+        $dest.Weight = $src.Weight;
+        $dest.Description = $src.Description;
+        $dest.Color = $src.Color;
+        .If ($src.Sizes == null) {
+            $dest.Sizes = .Default(System.Collections.Generic.List`1[System.String])
+        } .Else {
+            .Block() {
+                .If ($src.Sizes == null) {
+                    $dest.Sizes = .Default(System.Collections.Generic.List`1[System.String])
+                } .Else {
+                    .Block(
+                        System.Collections.Generic.List`1[Size] $sizes,
+                        System.Collections.Generic.List`1[System.String] $sizesVm,
+                        System.Collections.Generic.IEnumerator`1[Size] $sizesEnum) {
+                        $sizes = $src.Sizes;
+                        $sizesVm = .New System.Collections.Generic.List`1[System.String]();
+                        $sizesEnum = .Call $sizes.GetEnumerator();
+                        .Loop  {
+                            .If (.Call $sizesEnum.MoveNext() != False) {
+                                .Block(
+                                    Size $currentSize,
+                                    System.String $sizeStr) {
+                                    $currentSize = $sizesEnum.Current;
+                                    .Block() {
+                                        .If ($currentSize == .Default(Size)) {
+                                            $sizeStr = .Default(System.String)
+                                        } .Else {
+                                            .Block(
+                                                System.String $sizeStr) {
+                                                .Block() {
+                                                    .Block(
+                                                        ExpressMapper.ICustomTypeMapper`2
+                                                        [Size,System.String] $var1,
+                                                        ExpressMapper.DefaultMappingContext`2
+                                                        [Size,System.String] 
+                                                        $context5f2a2f7d-11b8-4355-bfa8-2e0d65b474a0)
+                                                     {
+                                                        $var1 = (ExpressMapper.ICustomTypeMapper`2
+                                                        [Size,System.String]).Constant
+                                                        <ExpressMapper.ICustomTypeMapper>
+                                                        (ExpressMapper.DelegateCustomTypeMapper`
+                                                        2[Size,System.String]);
+                                                        $context5f2a2f7d-11b8-4355-bfa8-2e0d65b474a0 = 
+                                                        .New ExpressMapper.DefaultMappingContext`
+                                                        2[Size,System.String]()
+                                                        ;
+                                                        $context5f2a2f7d-11b8-4355-bfa8-2e0d65b474a0.
+                                                        Source = $currentSize;
+                                                        $sizeStr = .Call $var1.Map
+                                                        ($context5f2a2f7d-11b8-4355-bfa8-2e0d65b474a0)
+                                                    }
+                                                };
+                                                $sizeStr = $sizeStr
+                                            }
+                                        }
+                                    };
+                                    .Call $sizesVm.Add($sizeStr)
+                                }
+                            } .Else {
+                                .Break #Label1 { }
+                            }
+                        }
+                        .LabelTarget #Label1:;
+                        $dest.Sizes = $sizesVm
+                    }
+                }
+            }
+        };
+        $dest
+    }
+}

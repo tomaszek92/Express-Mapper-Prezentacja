@@ -41,13 +41,13 @@ namespace ExpressMapperTutorial.ExpressionTrees
                 Expression.Label(label),
                 Expression.Assign(paramResult, paramResult));
 
-            Expression<Func<int, int>> dynamicLambdaFactorial = Expression.Lambda<Func<int, int>>(
-                block, new List<ParameterExpression> {paramX});
+            Func<int, int> dynamicLambdaFactorial = Expression.Lambda<Func<int, int>>(
+                block, new List<ParameterExpression> {paramX}).Compile();
             Console.WriteLine(dynamicLambdaFactorial);
 
             for (int i = 0; i < 7; i++)
             {
-                Console.WriteLine($"{i}! = {factorialLambda(i)}, {dynamicLambdaFactorial.Compile()(i)}");
+                Console.WriteLine($"{i}! = {factorialLambda(i)}, {dynamicLambdaFactorial(i)}");
             }
         }
     }

@@ -11,6 +11,13 @@ namespace ExpressMapperTutorial
     {
         static void Main(string[] args)
         {
+            //ExpressionTreesExamples();
+            TestMappers();
+            Console.ReadLine();
+        }
+
+        private static void ExpressionTreesExamples()
+        {
             Example1.Show();
             Console.WriteLine();
             Example2.Show();
@@ -19,11 +26,8 @@ namespace ExpressMapperTutorial
             Console.WriteLine();
             Example4.Show();
             Console.WriteLine();
-            Example5.Show();
-            Console.WriteLine();
-
-            //TestMappers();
-            Console.ReadLine();
+            //Example5.Show();
+            //Console.WriteLine();
         }
 
         private static void TestMappers()
